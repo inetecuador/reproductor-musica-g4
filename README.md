@@ -1,2 +1,10 @@
 # reproductor-musica-g4
-proyecto tipti
+# Integrantes :
+# nombre:   Verónica Marina Sangucho Cueva
+# correo:   inetecuador@gmail.com
+
+# nombre:   Celeste Viteri 		
+# correo:   celesteviteric@gmail.com
+
+# nombre:   Vanessa Cabrera	
+# correo:   mvanessacabreram@gmail.com
