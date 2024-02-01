@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+    background-color: #1e1e1e;
+}
+
+header{
+    nav{
+        /*display: flex;*/
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+body {
+    max-width: 1200px;
+    margin: auto;
+    background-color: aquamarine;
+}
+/**/
+.text-center {
+    text-align: center;
+}
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
