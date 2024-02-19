@@ -6,17 +6,24 @@
     <title>Reproductor de música</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="text-center">    
-    <main class="form-singin">
-        <div>
-            <input type="text" placeholder="Nombre de usuario">
-        </div>
-        <div>
-            <input type="text" placeholder="Clave">
-        <div>
-            <button>Iniciar sesión</button>
-        </div>
-    </main>
-    <script src="src/main.js"></script>
+<body class="text-center">
+        <form class="loginForm" id="loginForm">
+            <div class="input-icon">
+            <input
+                type="text"
+                placeholder="Username"
+                id="usernameInput" />
+            <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="input-icon">
+            <input
+                type="password"
+                placeholder="Password"
+                id="passwordInput" />
+            <i class="bi bi-eye-fill" id="viewPassword"></i>
+            </div>
+            <button id="loginBtn">Login</button>
+        </form>
+    <script src="src/login.js"></script>
 </body>
 </html>
