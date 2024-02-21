@@ -42,6 +42,12 @@ class Reproductor {
             new Song("cover2","nombre2","autor2","artista2","duracion2","album2","anio2","genero2","url2"),
             new Song("cover3","nombre3","autor3","artista3","duracion3","album3","anio3","genero3","url3")
         ];
+        this.mostrarCanciones();
+        this.currentSong=this.catalogoDeCanciones[0];
+        this.audio=new Audio();
+        this.currentPlaylist='busqueda';
+        this.favoritos=new PlayList('resFavoritos');
+        this.favoritos=new PlayList('resPlaylist');
 
     }
     mostrarCanciones = function() {
