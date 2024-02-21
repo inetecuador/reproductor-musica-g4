@@ -48,8 +48,33 @@ class Reproductor {
         this.currentPlaylist='busqueda';
         this.favoritos=new PlayList('resFavoritos');
         this.favoritos=new PlayList('resPlaylist');
+       
+        document.addEventListener('playSong', (e)=>{
+            this.currentSong= e.detail.song;
+            this.play();
+        });
+
+        this.isPaused=false;
+        this.inicializarControles();
+
 
     }
+
+    inicializarControles()
+    {
+        let buscar=document.getElementById("buscar");
+        buscar.addEventListener("click",()=>{
+
+        });
+        let play = document.getElementById("play");
+        play.addEventListener("click",()=>{});
+        let stop = document.getElementById("stop");
+        stop.addEventListener("click",()=>{});
+        let pause = document.getElementById("pause");
+        pause.addEventListener("click",()=>{});
+        this.audio.addEventListener("ended", ()=>{});
+    }
+
     mostrarCanciones = function() {
         let canciones = document.getElementById("canciones");
         this.catalogoDeCanciones.forEach(song => {
