@@ -141,10 +141,13 @@ class Reproductor {
     isPaused;
     constructor(){
         this.catalogoDeCanciones = [
-            new Song(1,"cover1","nombre1","autor1","artista1","duracion1","album1","anio1","genero1",".canciones/cancion1.mp3"),
-            new Song(2,"cover2","nombre2","autor2","artista2","duracion2","album2","anio2","genero2",".canciones/cancion2.mp3"),
-            new Song(3,"cover3","nombre3","autor1","artista3","duracion3","album3","anio1","genero3",".canciones/cancion3.mp3"),
-            new Song(4,"cover4","nombre4","autor2","artista4","duracion4","album4","anio2","genero4",".canciones/cancion4.mp3"),
+            new Song(1,"cover1","nombre1","autor1","artista1","duracion1","album1","anio1","genero1","./canciones/cancion1.mp3"),
+            new Song(2,"cover2","nombre2","autor2","artista2","duracion2","album2","anio2","genero2","./canciones/cancion2.mp3"),
+            new Song(3,"cover3","nombre3","autor3","artista3","duracion3","album3","anio3","genero3","./canciones/cancion3.mp3"),
+            new Song(4,"cover4","nombre4","autor4","artista4","duracion4","album4","anio4","genero4","./canciones/cancion4.mp3"),
+            
+            new Song(29,"./portada/cover29.jpg","nombre29","autor29","artista29","duracion29","album29","anio29","genero29","./canciones/cancion29.mp3"),
+            new Song(30,"./portada/cover30.jpg","nombre30","autor30","artista30","duracion30","album30","anio30","genero30","./canciones/cancion30.mp3"),
         ];
         this.mostrarCanciones();
         this.currentSong=this.catalogoDeCanciones[0];
