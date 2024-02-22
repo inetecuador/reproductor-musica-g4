@@ -16,21 +16,45 @@ class Song{
 }
 
 class PlayList {
+    listaCanciones;
+
     constructor(playListName, listaCanciones){
         this.playListName = playListName;
         this.listaCanciones = listaCanciones;
     }
-    playPlayList() {
-        this.listaCanciones.forEach(song => {
-            console.log(`Playing: ${this.listaCanciones[i].nombre}`);
+    
+    addSongToPlaylist(song){
+        this.listaCanciones.push(song);
+        this.dibujarCanciones();
+    }
+
+    dibujarCanciones(){
+        let canciones=document.getElementById(this.nombre);
+        let alterna="";
+        let alterna2="";
+        switch(this.nombre){
+            case 'resFavoritos':
+                alterna='fa-plus';
+                alterna2='fa-light fa-heart-o';
+                break;
+            case 'resPlaylist':
+                alterna='fa-minus';
+                alterna2='fa-heart';
+                break;
+        }
+        canciones.innerHTML='';
+        this.listaCanciones.forEach(song=> {
+            canciones.innerHTML+=
+            <li id="res_${song.id}" class="cancion" > ${song.nombre}
+            <span class="favoritos fa ${alterna2}" data-idCancion="${song.id}"></span>
+            <span class="addPlaylist fa ${alterna}" data-idCancion="${song.id}"></span>
+            <span class="playSong fa fa-play" data-idCancion="${song.id}"></span>
+            </li>;
         });
+        this.onPlay();
     }
 
-    getPlayListName(){
-        return this.playListName;
-    }
-
-    onPlay(){
+     onPlay(){
         let playSongs=document.getElementsByClassName("playSong");
         for(let i=0; i< playSongs.length; i++){
             playSongs[i].addEventListener("click", ()=> {
@@ -42,6 +66,21 @@ class PlayList {
             });
         }
     }
+    removeSongFromPlaylist(song){}
+    nextSong(id){}
+
+
+    playPlayList() {
+        this.listaCanciones.forEach(song => {
+            console.log(`Playing: ${this.listaCanciones[i].nombre}`);
+        });
+    }
+
+    getPlayListName(){
+        return this.playListName;
+    }
+
+   
 
 }
 
@@ -174,7 +213,18 @@ class Reproductor {
 
     }
 
-    addPlaylist=function(id, PlayList){}
+    addPlaylist=function(id, PlayList){
+        let cancion= this.catalogoDeCanciones.find(song=> song.id==id);
+        switch(PlayList){
+            case 'favoritos':
+                this.favoritos.addPlaylist(cancion);
+                break;
+            case 'myPlaylist':
+                this.myPlaylist.addSongToPlaylist(cancion);
+                break;
+
+        }
+    }
 
     mostrarBusqueda(filtroDeCanciones){
         let canciones=document.getElementById("resBusqueda");
@@ -197,8 +247,16 @@ class Reproductor {
     }
 
     play = function(){
-        let audio = new Audio (this.currentSong.urlSong);
-        audio.play();
+        if (this.currentSong !== undefined&& this.isPaused==false){
+            this.audio.src="/canciones/"+this.currentSong.urlSong;
+            this.audio.play();
+            this.cambiarPortada();            
+        }else{
+            this.audio.play();
+            this.isPaused=true
+        }
+       // let audio = new Audio (this.currentSong.urlSong);
+        //audio.play();
     }
 
     playStop = function(){
