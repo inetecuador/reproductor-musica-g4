@@ -116,8 +116,6 @@ class Reproductor {
 
         this.isPaused=false;
         this.inicializarControles();
-
-
     }
 
     inicializarControles()
@@ -145,27 +143,45 @@ class Reproductor {
                 <span class="favoritos fa fa-heart" data-idCancion="${song.id}"></span>
             </li>;
             
-            `<p class="cancion">${song.nombre}</p>`;
+          //  `<p class="cancion">${song.nombre}</p>`;
         });
         let playSongs=document.getElementsByClassName("playSong");
         for(let i=0; i<playSongs.length; i++)
         {
+            playSongs[i].addEventListener("click", ()=>{
+           
             this.currentPlaylist= 'busqueda';
             let id=playSongs[i].parentElement.getAttribute('data-idCancion');
             this.currentSong=this.catalogoDeCanciones.find(song=> song.id==id);
             this.play();
+            });
+        }
+        let favoritos=document.getElementsByClassName("favoritos");
+        for (let i=0; i< favoritos.length;i++){
+            favoritos[i].addEventListener("click", ()=>{
+                let id=favoritos[i].getAttribute('data-idCancion');
+                this.addPlaylist(id,'favoritos');
+            });
+        }
+        let addPlaylist=document.getElementsByClassName("addPlaylist");
+        for (let i=0; i< addPlaylist.length;i++){
+            
+            addPlaylist[i].addEventListener("click", ()=>{
+                let id=addPlaylist[i].getAttribute('data-idCancion');
+                this.addPlaylist(id, 'myPlaylist');
+            });
         }
 
     }
 
-    addPlayList=function(id, PlayList){}
+    addPlaylist=function(id, PlayList){}
 
     mostrarBusqueda(filtroDeCanciones){
         let canciones=document.getElementById("resBusqueda");
         filtroDeCanciones.forEach(song=>{
             canciones.innerHTML+=
                 <li id="res_${song.id}" class="cancion">${song.nombre}
-                <span class="favoritos fa fa-heart"></span> <span class="addPlayList fa fa-plus"></span>
+                <span class="favoritos fa fa-heart"></span> <span class="addPlaylist fa fa-plus"></span>
                 </li>;
         });
     }
