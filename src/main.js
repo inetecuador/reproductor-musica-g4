@@ -187,7 +187,7 @@ class Reproductor {
                 <span class="favoritos fa fa-heart" data-idCancion="${song.id}"></span>
             </li>;
             
-          //  `<p class="cancion">${song.nombre}</p>`;
+           `<p class="cancion">${song.nombre}</p>`;
         });
 
         let playSongs=document.getElementsByClassName("playSong");
@@ -242,14 +242,27 @@ class Reproductor {
         });
     }
 
-    buscarCancion = function(songName){
-
+    buscarCancion = function(inputUser){
+        inputUser=inputUser.trim(inputUser);
+        inputUser=inputUser.toLowerCase();
+        let canciones=document.getElementById("resBusqueda");
+        canciones.innerHTML='';
+        let resNombre=this.catalogoDeCanciones.filter(song=> song.nombre.match(inputUser));
+        let resAlbun=this.catalogoDeCanciones.filter(song=> song.album.match(inputUser));
+        let resArtista=this.catalogoDeCanciones.filter(song=> song.autor.match(inputUser));
+        let filtroDeCanciones=[ ...resNombre, ...resAlbun, ...resArtista];
+        
+        filtroDeCanciones=[ ...new setInterval(filtroDeCanciones)]
+        this.mostrarBusqueda(filtroDeCanciones);
     }
-    cambiarPortada=function(){}
+    cambiarPortada=function(){
+        const cover=document.getElementById("portadaImg");
+        cover.src="/portadas/"+this.currentSong.id+".webp";
+    }
 
     pause = function(){
-        let pauseButton = document.getElementById("pause")
-
+        //let pauseButton = document.getElementById("pause")
+        this.audio.pause();
     }
 
     play = function(){
@@ -266,15 +279,36 @@ class Reproductor {
     }
 
     playStop = function(){
-        let stopButton = document.getElementById("playStop");
-        stopButton.addEventListener("click",() => {
-            let currentSong = this.getCurrentSong();
-            let audio = new Audio(currentSong.urlSong);
-            audio.pause();
-            audio.currentTime = 0;
-        }
+      //  let stopButton = document.getElementById("playStop");
+        //stopButton.addEventListener("click",() => {
+          //  let currentSong = this.getCurrentSong();
+            //let audio = new Audio(currentSong.urlSong);
+           
+            this.isPaused=false;
+            this.audio.pause();
+            this.audio.currentTime = 0;
+       // }
 
-        )
+        //)
+    }
+    next=function(){
+       let id =this.currentSong.id;
+       switch(this.currentPlaylist){
+        case'busqueda':
+            this.currentSong=this.catalogoDeCanciones(id);
+            this.play();
+            break;
+        case'favoritos':
+            this.currentSong=this.favoritos.nextSong(id);
+            this.play();
+            break;
+        case'myPlaylist':
+            this.currentSong=this.myPlaylist.nextSong(id);
+            this.play();
+            break;
+       }
+       this.getCurrentSong=this.currentPlaylist.getCurrentSong(0);
+       this.play();
     }
 
     buscarAlbum = function (songAlbum) {
