@@ -29,6 +29,16 @@ class PlayList {
     getPlayListName(){
         return this.playListName;
     }
+
+    onPlay(){
+        let playSongs=document.getElementsByClassName("playSong");
+        for(let i=0; i< playSongs.length; i++){
+            playSongs[i].addEventListener("click", ())=> {
+                
+            }
+        }
+    }
+
 }
 
 class catalogoDeCanciones {
