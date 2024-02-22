@@ -82,8 +82,39 @@ class Reproductor {
             new Song(2,"cover2","nombre2","autor2","artista2","duracion2","album2","anio2","genero2","url2"),
             new Song(3,"cover3","nombre3","autor3","artista3","duracion3","album3","anio3","genero3","url3")
         ];
+        this.mostrarCanciones();
+        this.currentSong=this.catalogoDeCanciones[0];
+        this.audio=new Audio();
+        this.currentPlaylist='busqueda';
+        this.favoritos=new PlayList('resFavoritos');
+        this.favoritos=new PlayList('resPlaylist');
+       
+        document.addEventListener('playSong', (e)=>{
+            this.currentSong= e.detail.song;
+            this.play();
+        });
+
+        this.isPaused=false;
+        this.inicializarControles();
+
 
     }
+
+    inicializarControles()
+    {
+        let buscar=document.getElementById("buscar");
+        buscar.addEventListener("click",()=>{
+
+        });
+        let play = document.getElementById("play");
+        play.addEventListener("click",()=>{});
+        let stop = document.getElementById("stop");
+        stop.addEventListener("click",()=>{});
+        let pause = document.getElementById("pause");
+        pause.addEventListener("click",()=>{});
+        this.audio.addEventListener("ended", ()=>{});
+    }
+
     mostrarCanciones = function() {
         let canciones = document.getElementById("canciones");
         this.catalogoDeCanciones.forEach(song => {
