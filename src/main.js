@@ -267,7 +267,7 @@ class Reproductor {
 
     play = function(){
         if (this.currentSong !== undefined&& this.isPaused==false){
-            this.audio.src="/canciones/"+this.currentSong.urlSong;
+            this.audio.src="/img/"+this.currentSong.urlSong;
             this.audio.play();
             this.cambiarPortada();            
         }else{
