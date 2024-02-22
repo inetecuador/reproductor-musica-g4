@@ -61,8 +61,12 @@ class PlayList {
                 let id= playSong[i].getAttribute ('data-idCancion');
                 let cancion=this.listaCanciones.find(song=> song.id==id);
                 let event=new CustomEvent('playSong',{
-                    detail:{song: cancion},
+                    detail:{
+                        song: cancion,
+                        actual: this.nombre
+                    },
                     });
+                    document.dispatchEvent(event);
             });
         }
     }
@@ -146,10 +150,11 @@ class Reproductor {
         this.audio=new Audio();
         this.currentPlaylist='busqueda';
         this.favoritos=new PlayList('resFavoritos');
-        this.favoritos=new PlayList('resPlaylist');
+        this.myPlaylist=new PlayList('resPlaylist');
        
         document.addEventListener('playSong', (e)=>{
             this.currentSong= e.detail.song;
+            this.currentPlaylist=e.detail.actual;
             this.play();
         });
 
@@ -184,6 +189,7 @@ class Reproductor {
             
           //  `<p class="cancion">${song.nombre}</p>`;
         });
+
         let playSongs=document.getElementsByClassName("playSong");
         for(let i=0; i<playSongs.length; i++)
         {
