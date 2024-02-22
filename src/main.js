@@ -141,8 +141,8 @@ class Reproductor {
     isPaused;
     constructor(){
         this.catalogoDeCanciones = [
-            new Song(1,"cover1","nombre1","autor1","artista1","duracion1","album1","anio1","genero1","url1"),
-            new Song(2,"cover2","nombre2","autor2","artista2","duracion2","album2","anio2","genero2","url2"),
+            new Song(1,"cover1","nombre1","autor1","artista1","duracion1","album1","anio1","genero1",".canciones/cancion 1.mp3"),
+            new Song(2,"cover2","nombre2","autor2","artista2","duracion2","album2","anio2","genero2",".canciones/cancion 2.mp3"),
             new Song(3,"cover3","nombre3","autor3","artista3","duracion3","album3","anio3","genero3","url3")
         ];
         this.mostrarCanciones();
@@ -330,3 +330,7 @@ let listaCanciones = [
 let catalogo = new catalogoDeCanciones("", listaCanciones);
 let listaCatalogo = document.getElementById("catalogoDisponibleId");
 catalogo.cargar(listaCatalogo);
+
+
+let favoritos=new PlayList("Favoritos", []);
+let PlayList=new PlayList("Playlist1", []);
