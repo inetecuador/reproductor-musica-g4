@@ -33,9 +33,13 @@ class PlayList {
     onPlay(){
         let playSongs=document.getElementsByClassName("playSong");
         for(let i=0; i< playSongs.length; i++){
-            playSongs[i].addEventListener("click", ())=> {
-                
-            }
+            playSongs[i].addEventListener("click", ()=> {
+                let id= playSong[i].getAttribute ('data-idCancion');
+                let cancion=this.listaCanciones.find(song=> song.id==id);
+                let event=new CustomEvent('playSong',{
+                    detail:{song: cancion},
+                    });
+            });
         }
     }
 
