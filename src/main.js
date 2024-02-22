@@ -141,9 +141,10 @@ class Reproductor {
     isPaused;
     constructor(){
         this.catalogoDeCanciones = [
-            new Song(1,"cover1","nombre1","autor1","artista1","duracion1","album1","anio1","genero1",".canciones/cancion 1.mp3"),
-            new Song(2,"cover2","nombre2","autor2","artista2","duracion2","album2","anio2","genero2",".canciones/cancion 2.mp3"),
-            new Song(3,"cover3","nombre3","autor3","artista3","duracion3","album3","anio3","genero3","url3")
+            new Song(1,"cover1","nombre1","autor1","artista1","duracion1","album1","anio1","genero1",".canciones/cancion1.mp3"),
+            new Song(2,"cover2","nombre2","autor2","artista2","duracion2","album2","anio2","genero2",".canciones/cancion2.mp3"),
+            new Song(3,"cover3","nombre3","autor1","artista3","duracion3","album3","anio1","genero3",".canciones/cancion3.mp3"),
+            new Song(4,"cover4","nombre4","autor2","artista4","duracion4","album4","anio2","genero4",".canciones/cancion4.mp3"),
         ];
         this.mostrarCanciones();
         this.currentSong=this.catalogoDeCanciones[0];
