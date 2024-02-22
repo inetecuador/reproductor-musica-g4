@@ -76,6 +76,12 @@ class catalogoDeCanciones {
 class Reproductor {
     catalogoDeCanciones;
     currentSong;
+    audio;
+    filtroDeCanciones;
+    currentPlaylist='busqueda';
+    favoritos;
+    myPlaylist;
+    isPaused;
     constructor(){
         this.catalogoDeCanciones = [
             new Song(1,"cover1","nombre1","autor1","artista1","duracion1","album1","anio1","genero1","url1"),
@@ -115,18 +121,45 @@ class Reproductor {
         this.audio.addEventListener("ended", ()=>{});
     }
 
-    mostrarCanciones = function() {
-        let canciones = document.getElementById("canciones");
+    mostrarCanciones = function(PlayList) {
+        let canciones = document.getElementById("resBusqueda");
         this.catalogoDeCanciones.forEach(song => {
-            canciones.innerHTML += `<p class="cancion">${song.nombre}</p>`;
+            canciones.innerHTML += 
+            <li class="cancion" data-idCancion="${song.id}">${song.nombre}
+                <span class="favoritos fa fa-heart" data-idCancion="${song.id}"></span>
+                <span class="favoritos fa fa-heart" data-idCancion="${song.id}"></span>
+                <span class="favoritos fa fa-heart" data-idCancion="${song.id}"></span>
+            </li>;
+            
+            `<p class="cancion">${song.nombre}</p>`;
         });
+        let playSongs=document.getElementsByClassName("playSong");
+        for(let i=0; i<playSongs.length; i++)
+        {
+            this.currentPlaylist= 'busqueda';
+            let id=playSongs[i].parentElement.getAttribute('data-idCancion');
+            this.currentSong=this.catalogoDeCanciones.find(song=> song.id==id);
+            this.play();
+        }
+
     }
 
+    addPlayList=function(id, PlayList){}
 
+    mostrarBusqueda(filtroDeCanciones){
+        let canciones=document.getElementById("resBusqueda");
+        filtroDeCanciones.forEach(song=>{
+            canciones.innerHTML+=
+                <li id="res_${song.id}" class="cancion">${song.nombre}
+                <span class="favoritos fa fa-heart"></span> <span class="addPlayList fa fa-plus"></span>
+                </li>;
+        });
+    }
 
     buscarCancion = function(songName){
 
     }
+    cambiarPortada=function(){}
 
     pause = function(){
         let pauseButton = document.getElementById("pause")
